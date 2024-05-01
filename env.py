@@ -3,7 +3,6 @@ import numpy as np
 feats = ['AAPL', 'MSFT', 'AMZN']
 class Env:
     def __init__(self, df):
-        """Initialize the environment with dataframe and set initial conditions."""
         self.df = df
         self.n = len(df)
         self.current_idx = 0
@@ -13,7 +12,6 @@ class Env:
         self.rewards = self.df['SPY'].to_numpy()
 
     def reset(self):
-        """Reset the environment to the initial state."""
         self.current_idx = 0
         return self.states[self.current_idx]
 
@@ -31,7 +29,6 @@ class Env:
         return next_state, reward, done
 
     def _process_action(self, action):
-        """Update investment status based on the action taken."""
         if action == 0:  # BUY
             self.is_invested = 1
         elif action == 1:  # SELL
